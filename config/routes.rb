@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   root :to => 'lessons#index'
 
   resources :lessons do
+    resources :questions, only: [:index, :show, :new]
+
     collection do
       get '/join' => 'user_lessons#new'
       post '/join' => 'user_lessons#create'

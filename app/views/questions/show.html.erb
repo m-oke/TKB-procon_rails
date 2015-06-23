@@ -1,0 +1,63 @@
+<style>
+.description {
+font-size: medium;
+}
+</style>
+
+<h2><%= @question.title %></h2>
+
+<div class="table-responsive">
+  <table class="table table-bordered table-striped">
+    <tr>
+      <th></th>
+      <th>結果</th>
+      <th>実行時間</th>
+      <th>メモリ使用率</th>
+    </tr>
+    <tr>
+      <td>制限</td>
+      <td>-</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>提出物</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
+</div>
+
+<h3>説明</h3>
+<div class="bg-success description">
+  <%= @question.content %>
+</div>
+<h3>入力</h3>
+<div class="bg-success description">
+  <%= @question.input_description %>
+</div>
+<h3>出力</h3>
+<div class="bg-success description">
+  <%= @question.output_description %>
+</div>
+
+<div name="samples">
+  <h3>入出力例</h3>
+  <ul>
+    <% @question.samples.each.with_index(1) do |sample, i| %>
+      <li><h4>入力<%= i %></h4></li>
+      <div class="bg-success">
+        <%= sample.input %>
+      </div>
+      <li><h4>出力<%= i %></h4></li>
+      <div class="bg-success">
+        <%= sample.output %>
+      </div>
+      <hr size="3" noshade="noshade">
+    <% end %>
+  </ul>
+</div>
+
+<div name="upload_form">
+</div>
