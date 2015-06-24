@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   end
 
   resources :questions, only: [:index, :show, :new]
+  resource :answers, only: [:create]
 
   devise_for :users, :controllers => {
     :sessions => 'users/sessions',

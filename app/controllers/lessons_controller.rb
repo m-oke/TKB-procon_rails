@@ -22,4 +22,5 @@ class LessonsController < ApplicationController
   def get_teachers
     return User.where(:id => @lesson.user_lessons.find_by(:is_teacher => true).pluck(:user_id))
   end
+
 end

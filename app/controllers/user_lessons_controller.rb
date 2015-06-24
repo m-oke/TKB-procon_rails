@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
 class UserLessonsController < ApplicationController
+  # 授業への参加ページ
   def new
   end
 
+  # 授業への参加
+  # ログインしているユーザが授業コードに該当する授業に参加する
+  # @param [String] :lesson_code 授業コード
   def create
     lesson = Lesson.find_by_lesson_code(params[:lesson_code])
     if lesson.nil?
