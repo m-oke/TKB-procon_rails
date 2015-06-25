@@ -4,4 +4,5 @@ class Answer < ActiveRecord::Base
   belongs_to :lesson, :foreign_key => :lesson_id
 
   EXT = {"c" => ".c", "python" => ".py"}
+  RESULT = {-1 => "Reject", 0 => "Pending", 1 => "Accept"}
 end

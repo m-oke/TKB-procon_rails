@@ -16,6 +16,14 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
+    answers = Answer.where(:student_id => current_user.id,
+                           :question_id => params[:id],
+                           :lesson_id => params[:lesson_id])
+    @latest_answer = Answer.new
+    unless answers.empty?
+      last = answers.where(:result => 1).last
+      @latest_answer = last.nil? ? answers.last : last
+    end
   end
 
 end

@@ -14,17 +14,17 @@
 ActiveRecord::Schema.define(version: 20150618055209) do
 
   create_table "answers", force: :cascade do |t|
-    t.integer  "student_id",            limit: 4,                  null: false
-    t.integer  "question_id",           limit: 4,                  null: false
-    t.string   "file_name",             limit: 255,                null: false
-    t.integer  "result",                limit: 4,                  null: false
-    t.string   "language",              limit: 255,                null: false
-    t.decimal  "run_time",                          precision: 10
+    t.integer  "student_id",            limit: 4,   null: false
+    t.integer  "question_id",           limit: 4,   null: false
+    t.string   "file_name",             limit: 255, null: false
+    t.integer  "result",                limit: 4,   null: false
+    t.string   "language",              limit: 255, null: false
+    t.float    "run_time",              limit: 24
     t.integer  "memory_usage",          limit: 4
     t.integer  "cpu_usage",             limit: 4
     t.float    "plagiarism_percentage", limit: 24
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.integer  "lesson_id",             limit: 4
   end
 

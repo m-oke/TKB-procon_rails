@@ -49,12 +49,10 @@ end
 
 # 学生(user_id: 7~26)
 15.times do |i|
-  puts i
-  puts i+8
   if i / 8 == 0
-    UserLesson.create(:user_id => i + 8, :lesson_id => 1) # id:7~14
+    UserLesson.create(:user_id => i + 7, :lesson_id => 1) # id:7~14
   else
-    UserLesson.create(:user_id => i + 8, :lesson_id => 2) # id:15~21
+    UserLesson.create(:user_id => i + 7, :lesson_id => 2) # id:15~21
   end
 end
 
@@ -94,8 +92,8 @@ TestDatum.create(:question_id => 3, :input => "121", :output => "363")
 
 # 回答
 # 学生1
-Answer.create(:student_id => 7, :lesson_id => 1, :question_id => 1, :file_name => "version1.txt", :language => "c", :result => 0, :plagiarism_percentage => 0.4)
-Answer.create(:student_id => 7, :lesson_id => 1, :question_id => 1, :file_name => "version2.txt", :language => "c", :result => 0, :plagiarism_percentage => 0.4)
+Answer.create(:student_id => 7, :lesson_id => 1, :question_id => 1, :file_name => "version1.txt", :language => "c", :result => -1, :plagiarism_percentage => 0.4)
+Answer.create(:student_id => 7, :lesson_id => 1, :question_id => 1, :file_name => "version2.txt", :language => "c", :result => -1, :plagiarism_percentage => 0.4)
 Answer.create(:student_id => 7, :lesson_id => 1, :question_id => 1, :file_name => "version3.txt", :language => "c", :result => 1, :run_time => 1, :memory_usage => 10, :cpu_usage => 7, :plagiarism_percentage => 0.4)
 Answer.create(:student_id => 7, :lesson_id => 1, :question_id => 1, :file_name => "version4.txt", :language => "c", :result => 1, :run_time => 0.1, :memory_usage => 5, :cpu_usage => 7, :plagiarism_percentage => 0.9)
 
@@ -103,9 +101,9 @@ Answer.create(:student_id => 7, :lesson_id => 1, :question_id => 2, :file_name =
 
 
 # 学生2
-Answer.create(:student_id => 8, :lesson_id => 1, :question_id => 1, :file_name => "version1.txt", :language => "c", :result => 0, :plagiarism_percentage => 0.1)
+Answer.create(:student_id => 8, :lesson_id => 1, :question_id => 1, :file_name => "version1.txt", :language => "c", :result => -1, :plagiarism_percentage => 0.1)
 
-Answer.create(:student_id => 8, :lesson_id => 1, :question_id => 2, :file_name => "version1.txt", :language => "c", :result => 0, :plagiarism_percentage => 0.2)
+Answer.create(:student_id => 8, :lesson_id => 1, :question_id => 2, :file_name => "version1.txt", :language => "c", :result => -1, :plagiarism_percentage => 0.2)
 Answer.create(:student_id => 8, :lesson_id => 1, :question_id => 2, :file_name => "version2.txt", :language => "c", :result => 1, :run_time => 1, :memory_usage => 10, :cpu_usage => 8, :plagiarism_percentage => 0.5)
 
 # クラス1の残りの学生

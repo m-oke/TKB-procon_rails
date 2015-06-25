@@ -18,14 +18,14 @@ font-size: medium;
     <tr>
       <td>制限</td>
       <td>-</td>
-      <td></td>
-      <td></td>
+      <td><%= @question.run_time_limit %></td>
+      <td><%= @question.memory_usage_limit %></td>
     </tr>
     <tr>
       <td>提出物</td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td><%= Answer::RESULT[@latest_answer.result] %></td>
+      <td><%= @latest_answer.run_time %></td>
+      <td><%= @latest_answer.memory_usage %></td>
     </tr>
   </table>
 </div>
@@ -62,18 +62,19 @@ font-size: medium;
 
 
 <h3>投稿</h3>
-<%= form_tag({:controller => "answers", :action => "create"}, :multipart => true) do |f| %>
+<%= form_tag({:controller => 'answers', :action => 'create'}, :multipart => true) do |f| %>
 <div class="answer form-group" name="answer">
   <div class="answer form-group" name="language">
-    <%= label_tag :language, "使用言語" %>
-    <%= select_tag :language, options_for_select({"Python" => "python"}), :class => "form-control", :style => "width:220px" %>
+    <%= label_tag :language, '使用言語' %>
+    <%= select_tag :language, options_for_select({'Python' => 'python'}), :class => 'form-control', :style => 'width:220px' %>
   </div>
   <div class="answer form-group" name="upload_form">
-    <%= label_tag :upload_file, "ファイル選択" %>
+    <%= label_tag :upload_file, 'ファイル選択' %>
     <%= file_field_tag :upload_file %>
+    <p class="help-block">ファイルサイズは10MBまで</p>
   </div>
   <%= hidden_field_tag :lesson_id, params[:lesson_id] %>
   <%= hidden_field_tag :id, params[:id] %>
-  <%= submit_tag "アップロード", :class => "btn btn-primary" %>
+  <%= submit_tag 'アップロード', :class => 'btn btn-primary' %>
 </div>
 <% end %>

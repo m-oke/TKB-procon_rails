@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root :to => 'lessons#index'
 
-  resources :lessons, :param => :lesson_id do
+  resources :lessons do
     resources :questions, only: [:index, :show, :new]
 
     collection do
