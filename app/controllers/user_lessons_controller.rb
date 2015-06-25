@@ -8,7 +8,7 @@ class UserLessonsController < ApplicationController
   # ログインしているユーザが授業コードに該当する授業に参加する
   # @param [String] :lesson_code 授業コード
   def create
-    lesson = Lesson.find_by_lesson_code(params[:lesson_code])
+    lesson = Lesson.find_by(:lesson_code => params[:lesson_code])
     if lesson.nil?
       flash.now[:notice] = "該当する授業が存在しません"
       render :new  and return

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class LessonsController < ApplicationController
   before_action :set_lesson, only: [:show, :questions, :students]
   before_filter :authenticate_user!
@@ -12,7 +13,10 @@ class LessonsController < ApplicationController
 
   private
   def set_lesson
-    @lesson = Lesson.find(params[:id])
+    @lesson = Lesson.find_by(:id => params[:id])
+    if @lesson.nil?
+      redirect_to root_path, :alert => "該当する授業が存在しません。"
+    end
   end
 
   def get_students
