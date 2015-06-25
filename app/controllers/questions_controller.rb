@@ -13,18 +13,16 @@ class QuestionsController < ApplicationController
     else
       redirect_to root_path, :alert => "該当する授業が存在しません。"
     end
+    @is_teacher = Lesson.find_by(:id => id).user_lessons.find_by(:user_id => current_user.id, :lesson_id => id).is_teacher
   end
 
   def show
     @question = Question.find(params[:id])
-    answers = Answer.where(:student_id => current_user.id,
-                           :question_id => params[:id],
-                           :lesson_id => params[:lesson_id])
-    @latest_answer = Answer.new
-    unless answers.empty?
-      last = answers.where(:result => 1).last
-      @latest_answer = last.nil? ? answers.last : last
-    end
+    id = params[:lesson_id] || 1
+    @latest_answer = Answer.latest_answer(:student_id => current_user.id,
+                                          :question_id => params[:id],
+                                          :lesson_id => id) || Answer.new
+    @is_teacher = Lesson.find_by(:id => id).user_lessons.find_by(:user_id => current_user.id, :lesson_id => id).is_teacher
   end
 
 end

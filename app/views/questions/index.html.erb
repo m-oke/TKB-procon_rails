@@ -4,13 +4,15 @@
   <tr>
     <th>問題ID</th>
     <th>問題名</th>
-    <th>結果</th>
     <% if @lesson.id != 1 %>
       <th>開始時間</th>
       <th>終了時間</th>
     <% end %>
-    <th>解答</th>
-    <th>履歴</th>
+    <% unless @is_teacher %>
+      <th>結果</th>
+      <th>回答</th>
+      <th>履歴</th>
+    <% end %>
   </tr>
   <% @questions.each.with_index(1) do |question, i| %>
     <tr>
@@ -21,22 +23,20 @@
         <td><%= link_to(question.title, question_path(:id => question.id)) %></td>
       <% end %>
 
-      <% %>
-      <td>  </td>
-      <% %>
-
       <% if @lesson.id != 1 %>
         <td><%= @lesson.lesson_questions.find_by(:question_id => question.id).start_time.strftime(" %Y /  %m / %d - %H:%M:%S ") %></td>
         <td><%= @lesson.lesson_questions.find_by(:question_id => question.id).end_time.strftime(" %Y /  %m / %d - %H:%M:%S ") %></td>
       <% end %>
 
-      <% if @lesson.id != 1 %>
-        <td><%= link_to('回答', lesson_question_path(:id => question.id) + '#answer', class: 'btn btn-default') %></td>
-      <% else %>
-        <td><%= link_to('回答', question_path(:id => question.id) + '#answer', class: 'btn btn-default') %></td>
+      <% unless @is_teacher %>
+        <td> </td>
+        <% if @lesson.id != 1 %>
+          <td><%= link_to('回答', lesson_question_path(:id => question.id) + '#answer', class: 'btn btn-default') %></td>
+        <% else %>
+          <td><%= link_to('回答', question_path(:id => question.id) + '#answer', class: 'btn btn-default') %></td>
+        <% end %>
+        <td>-</td>
       <% end %>
-
-      <td> - </td>
     </tr>
   <% end %>
 </table>

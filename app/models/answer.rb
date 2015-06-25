@@ -5,4 +5,18 @@ class Answer < ActiveRecord::Base
 
   EXT = {"c" => ".c", "python" => ".py"}
   RESULT = {-1 => "Reject", 0 => "Pending", 1 => "Accept"}
+
+
+  def self.latest_answer(student_id: , lesson_id: ,question_id: )
+    answers = Answer.where(:student_id => student_id,
+                           :question_id => question_id,
+                           :lesson_id => lesson_id)
+    latest_answer = nil
+    unless answers.empty?
+      last = answers.where(:result => 1).last
+      latest_answer = last.nil? ? answers.last : last
+    end
+    return latest_answer
+  end
+
 end

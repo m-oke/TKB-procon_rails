@@ -39,4 +39,6 @@ class AnswersController < ApplicationController
     end
     redirect_to :controller => 'questions', :action => 'show', :lesson_id => params[:lesson_id], :id => params[:id]
   end
+
+
 end
