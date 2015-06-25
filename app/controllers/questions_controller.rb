@@ -3,9 +3,10 @@ class QuestionsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @lesson = Lesson.find_by(:id => params[:lesson_id])
+    id = params[:lesson_id] || 1
+    @lesson = Lesson.find_by(:id => id)
     unless @lesson.nil?
-      if UserLesson.find_by(:user_id => current_user.id, :lesson_id => params[:lesson_id]).nil?
+      if UserLesson.find_by(:user_id => current_user.id, :lesson_id => id).nil?
         redirect_to root_path, :alert => "該当する授業に参加していません．"
       end
       @questions = @lesson.question
