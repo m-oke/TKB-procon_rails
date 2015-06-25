@@ -7,17 +7,20 @@ class QuestionsController < ApplicationController
     @lesson = Lesson.find_by(:id => id)
     unless @lesson.nil?
       if UserLesson.find_by(:user_id => current_user.id, :lesson_id => id).nil?
-        redirect_to root_path, :alert => "該当する授業に参加していません．"
+        redirect_to root_path, :alert => '該当する授業に参加していません．'
       end
       @questions = @lesson.question
     else
-      redirect_to root_path, :alert => "該当する授業が存在しません。"
+      redirect_to root_path, :alert => '該当する授業が存在しません。'
     end
     @is_teacher = Lesson.find_by(:id => id).user_lessons.find_by(:user_id => current_user.id, :lesson_id => id).is_teacher
   end
 
   def show
-    @question = Question.find(params[:id])
+    @question = Question.find_by(:id => params[:id])
+    if @question.nil?
+      redirect_to lessons_path, :alert => '該当する問題が存在しません。'
+    end
     id = params[:lesson_id] || 1
     @latest_answer = Answer.latest_answer(:student_id => current_user.id,
                                           :question_id => params[:id],

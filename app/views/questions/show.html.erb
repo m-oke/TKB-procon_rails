@@ -4,6 +4,11 @@ font-size: medium;
 }
 
 </style>
+<% if params[:lesson_id] %>
+  <%= link_to '問題一覧に戻る', lesson_questions_path %>
+<% else %>
+  <%= link_to '問題一覧に戻る', questions_path %>
+<% end %>
 
 <h2><%= @question.title %></h2>
 

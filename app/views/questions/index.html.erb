@@ -29,13 +29,16 @@
       <% end %>
 
       <% unless @is_teacher %>
-        <td> </td>
+        <% @latest_answer = Answer.latest_answer(:student_id => current_user.id,
+                                                 :question_id => question.id,
+                                                 :lesson_id => @lesson.id) || Answer.new %>
+        <td><%= Answer::RESULT[@latest_answer.result] %></td>
         <% if @lesson.id != 1 %>
           <td><%= link_to('回答', lesson_question_path(:id => question.id) + '#answer', class: 'btn btn-default') %></td>
         <% else %>
           <td><%= link_to('回答', question_path(:id => question.id) + '#answer', class: 'btn btn-default') %></td>
         <% end %>
-        <td>-</td>
+        <td></td>
       <% end %>
     </tr>
   <% end %>
