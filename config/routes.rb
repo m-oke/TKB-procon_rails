@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   root :to => 'lessons#index'
 
   resources :lessons do
+    resources :questions, only: [:index, :show, :new]
+
     collection do
       get '/join' => 'user_lessons#new'
       post '/join' => 'user_lessons#create'
@@ -11,6 +13,7 @@ Rails.application.routes.draw do
   end
 
   resources :questions, only: [:index, :show, :new]
+  resource :answers, only: [:create]
 
   devise_for :users, :controllers => {
     :sessions => 'users/sessions',

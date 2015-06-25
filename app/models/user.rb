@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -27,6 +28,9 @@ class User < ActiveRecord::Base
     roles.include?(role)
   end
 
+  # ユーザが該当するrolesに所属するかどうか
+  # @param [Array] role roleを記述した配列
+  # @return [Boolean] 結果
   def has_roles?(role)
     role.each do |r|
       if !roles.include?(r)

@@ -16,3 +16,4 @@
 .idea
 .idea/*
 .env
+/uploads/*
